@@ -30,9 +30,6 @@ namespace dotnet_roslyn_code_generation
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                 .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName("ICustomCommand<UpdateBusinessHealthCommandRequest, UpdateBusinessHealthCommandResponse>")));
 
-            // Create a stament with the body of a method.
-            var syntax = SyntaxFactory.ParseStatement("canceled = true;");
-
             // Create a method
             var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName("void"), "MarkAsCanceled")
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))

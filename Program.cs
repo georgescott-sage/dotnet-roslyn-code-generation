@@ -1,5 +1,6 @@
 ﻿using System;
 using dotnet_roslyn_code_generation.commands;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace dotnet_roslyn_code_generation
 {
@@ -9,8 +10,14 @@ namespace dotnet_roslyn_code_generation
         {
             Console.WriteLine("Hello World!");
 
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<ICommandCreator, CommandCreator>()
+                .BuildServiceProvider();
+
+            var commandCreator = serviceProvider.GetService<ICommandCreator>();
+
             // Create a command interface
-            CommandCreator.CreateCommandInterface();
+            commandCreator.CreateCommandInterface();
 
             // Wait to exit.
             Console.Read();

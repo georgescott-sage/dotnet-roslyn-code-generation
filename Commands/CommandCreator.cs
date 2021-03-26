@@ -1,12 +1,18 @@
 using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using dotnet_roslyn_code_generation.commands;
 
 namespace dotnet_roslyn_code_generation.commands
 {
-    public static class CommandCreator
+    public interface ICommandCreator
     {
-        public static void CreateCommandInterface()
+        void CreateCommandInterface();
+    }
+    
+    public class CommandCreator : ICommandCreator
+    {
+        public void CreateCommandInterface()
         {
             // Create a namespace: (namespace CodeGenerationSample)
             var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName("projectnamespacecore")).NormalizeWhitespace();
@@ -34,7 +40,7 @@ namespace dotnet_roslyn_code_generation.commands
             var code = @namespace
                 .NormalizeWhitespace()
                 .ToFullString();
-
+            
             // Output new code to the console.
             Console.WriteLine(code);
         }

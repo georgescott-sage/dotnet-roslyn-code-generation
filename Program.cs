@@ -17,7 +17,9 @@ namespace dotnet_roslyn_code_generation
             var commandCreator = serviceProvider.GetService<ICommandCreator>();
 
             // Create a command interface
-            commandCreator.CreateCommandInterface();
+            var command = commandCreator.CreateCommandInterface();
+
+            Console.WriteLine(command);
 
             // Wait to exit.
             Console.Read();

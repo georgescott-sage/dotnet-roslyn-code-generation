@@ -7,12 +7,12 @@ namespace dotnet_roslyn_code_generation.commands
 {
     public interface ICommandCreator
     {
-        void CreateCommandInterface();
+        string CreateCommandInterface();
     }
-    
+
     public class CommandCreator : ICommandCreator
     {
-        public void CreateCommandInterface()
+        public string CreateCommandInterface()
         {
             // Create a namespace: (namespace CodeGenerationSample)
             var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName("projectnamespacecore")).NormalizeWhitespace();
@@ -37,12 +37,9 @@ namespace dotnet_roslyn_code_generation.commands
             @namespace = @namespace.AddMembers(interfaceDefinition);
 
             // Normalize and get code as string.
-            var code = @namespace
+            return @namespace
                 .NormalizeWhitespace()
                 .ToFullString();
-            
-            // Output new code to the console.
-            Console.WriteLine(code);
         }
     }
 }

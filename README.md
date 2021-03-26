@@ -1,3 +1,3 @@
-# dotnet-roslyn-code-generation
+# dotnet-roslyn-code-generation README
 
-Sample project to test using code analysis tools/rolsyn to stub out boilerplate code
+Project to develop and explore boilerplate code generation using code analysis tools/rolsyn

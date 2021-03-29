@@ -12,6 +12,6 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         string BaseType();
 
-        IEnumerable<KeyValuePair<string, Type>> MethodDeclarations();
+        Tuple<string, Type>[] MethodDeclarations();
     }
 }

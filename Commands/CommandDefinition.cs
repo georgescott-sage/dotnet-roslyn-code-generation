@@ -6,10 +6,11 @@ namespace dotnet_roslyn_code_generation.commands.definitions
     {
         public string BaseType() => "ICustomCommand<UpdateBusinessHealthCommandRequest, UpdateBusinessHealthCommandResponse>";
 
-        public IEnumerable<KeyValuePair<string, Type>> MethodDeclarations()
-        {
-            return new List<KeyValuePair<string, Type>>() { new KeyValuePair<string, Type>("TestMethod", typeof(void)) };
-        }
+        public Tuple<string, Type>[] MethodDeclarations() 
+            => new Tuple<string, Type>[]
+            {
+                Tuple.Create("TestMethod", typeof(void))
+            };
 
         public string Name() => "IGetUsersCommand";
 

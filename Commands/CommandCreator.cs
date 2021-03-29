@@ -31,7 +31,7 @@ namespace dotnet_roslyn_code_generation.commands
             foreach(var method in interfaceDefinition.MethodDeclarations())
             {
                 // Create a method
-                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Value.Name), method.Key)
+                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Item2.Name), method.Item1)
                     .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 

@@ -1,40 +1,46 @@
-using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using dotnet_roslyn_code_generation.commands;
-
+using System.Linq;
+using dotnet_roslyn_code_generation.commands.definitions;
 namespace dotnet_roslyn_code_generation.commands
 {
     public interface ICommandCreator
     {
-        string CreateCommandInterface();
+        string CreateInterface(InterfaceDefinition interfaceDefinition);
     }
 
     public class CommandCreator : ICommandCreator
     {
-        public string CreateCommandInterface()
+        public string CreateInterface(InterfaceDefinition interfaceDefinition)
         {
-            // Create a namespace: (namespace CodeGenerationSample)
-            var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName("projectnamespacecore")).NormalizeWhitespace();
+             // Create a namespace: (namespace CodeGenerationSample)
+            var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(interfaceDefinition.Namespace())).NormalizeWhitespace();
 
              // Add System using statement: (using System)
-            @namespace = @namespace.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System")));
+            @namespace = @namespace.AddUsings(
+                interfaceDefinition.Usings().Select(
+                    x => SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(x))
+                    ).ToArray()
+                );
 
             //  Create a class: (get uses command interface)
-            var interfaceDefinition = SyntaxFactory.InterfaceDeclaration("IGetUsersCommand")
+            var definition = SyntaxFactory.InterfaceDeclaration(interfaceDefinition.Name())
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName("ICustomCommand<UpdateBusinessHealthCommandRequest, UpdateBusinessHealthCommandResponse>")));
+                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(interfaceDefinition.BaseType())));
 
-            // Create a method
-            var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName("void"), "MarkAsCanceled")
-                .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+            foreach(var method in interfaceDefinition.MethodDeclarations())
+            {
+                // Create a method
+                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Value.Name), method.Key)
+                    .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
+                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 
-            // Add the field, the property and method to the class.
-            interfaceDefinition = interfaceDefinition.AddMembers(methodDeclaration);
+                // Add the field, the property and method to the class.
+                definition = definition.AddMembers(methodDeclaration);
+            }
 
             // Add the class to the namespace.
-            @namespace = @namespace.AddMembers(interfaceDefinition);
+            @namespace = @namespace.AddMembers(definition);
 
             // Normalize and get code as string.
             return @namespace

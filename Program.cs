@@ -1,5 +1,6 @@
 ﻿using System;
 using dotnet_roslyn_code_generation.commands;
+using dotnet_roslyn_code_generation.commands.definitions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace dotnet_roslyn_code_generation
@@ -17,7 +18,7 @@ namespace dotnet_roslyn_code_generation
             var commandCreator = serviceProvider.GetService<ICommandCreator>();
 
             // Create a command interface
-            var command = commandCreator.CreateCommandInterface();
+            var command = commandCreator.CreateInterface(new CommandDefinition());
 
             Console.WriteLine(command);
 

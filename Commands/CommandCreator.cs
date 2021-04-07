@@ -10,7 +10,7 @@ namespace dotnet_roslyn_code_generation.commands
     {
         string CreateInterface(InterfaceDefinition interfaceDefinition);
     }
-    //use director pattern to create various classes interface?
+
     public class CommandCreator : ICommandCreator
     {
         public string CreateInterface(InterfaceDefinition interfaceDefinition)

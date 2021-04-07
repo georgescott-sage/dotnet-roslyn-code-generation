@@ -14,7 +14,6 @@ namespace dotnet_roslyn_code_generation.commands
             .NormalizeWhitespace()
             .ToFullString();
         
-        //should be init?
         public CommandInterfaceBuilder WithNamespace(string name)
         {
             namespaceDeclaration = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.IdentifierName(name));
@@ -39,12 +38,10 @@ namespace dotnet_roslyn_code_generation.commands
 
             foreach(var method in methodDeclarations)
             {
-                // Create a method
                 var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Item2.Name), method.Item1)
                     .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 
-                // Add the field, the property and method to the class.
                 definition = definition.AddMembers(methodDeclaration);
             }
 

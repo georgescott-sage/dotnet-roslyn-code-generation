@@ -30,11 +30,12 @@ namespace dotnet_roslyn_code_generation.commands
             return this;
         }
 
-        public CommandInterfaceBuilder WithInterface(string name, string baseType, Tuple<string, Type>[] methodDeclarations)
+        public CommandInterfaceBuilder WithInterface(string name, string baseType, Tuple<string, Type>[] methodDeclarations, string summaryComment)
         {
             var definition = SyntaxFactory.InterfaceDeclaration(name)
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(baseType)));
+                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(baseType)))
+                .WithLeadingTrivia(new SyntaxTriviaList(new SyntaxTriviaList(SyntaxFactory.Comment("/// <summary>"), SyntaxFactory.Comment($"// {summaryComment}"), SyntaxFactory.Comment("/// </summary>"))));
 
             foreach(var method in methodDeclarations)
             {
@@ -46,6 +47,7 @@ namespace dotnet_roslyn_code_generation.commands
             }
 
             namespaceDeclaration = namespaceDeclaration.AddMembers(definition);
+
             return this;
         }
 

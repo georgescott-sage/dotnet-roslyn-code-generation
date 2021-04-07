@@ -10,6 +10,8 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         string Name();
 
+        string Summary();
+
         string BaseType();
 
         Tuple<string, Type>[] MethodDeclarations();

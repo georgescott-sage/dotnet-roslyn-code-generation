@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 namespace dotnet_roslyn_code_generation.commands.definitions
 {
-    public class CommandDefinition : InterfaceDefinition
+    public class CommandInterfaceDefinition : InterfaceDefinition
     {
-        public string BaseType() => "ICustomCommand<UpdateBusinessHealthCommandRequest, UpdateBusinessHealthCommandResponse>";
+        public string BaseType() => "ICustomCommand<UpdateUserCommandRequest, UpdateUserCommandResponse>";
 
-        public Tuple<string, Type>[] MethodDeclarations() 
-            => new Tuple<string, Type>[]
-            {
-                Tuple.Create("TestMethod", typeof(void))
-            };
+        public Tuple<string, Type>[] MethodDeclarations() => new Tuple<string, Type>[]{};
+
+        public string Name() => "IUpdateUserCommand";
+        public string Summary() => "Interface defining the command to update a user";
+        public string Namespace() => "SBC.Connected.ServiceName.Service.Domain.Core.UseCases.UseCase.Commands.CommandName";
+
+        public IEnumerable<string> Usings() => new List<string>(){ "System", "SBC.Domain.Commands" };
+    }
 
         public string Name() => "IGetUsersCommand";
 

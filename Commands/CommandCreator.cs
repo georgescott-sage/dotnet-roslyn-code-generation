@@ -14,7 +14,7 @@ namespace dotnet_roslyn_code_generation.commands
         public string CreateInterface(InterfaceDefinition interfaceDefinition)
         {
              // Create a namespace: (namespace CodeGenerationSample)
-            var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(interfaceDefinition.Namespace())).NormalizeWhitespace();
+            var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.IdentifierName(interfaceDefinition.Namespace()));
 
              // Add System using statement: (using System)
             @namespace = @namespace.AddUsings(

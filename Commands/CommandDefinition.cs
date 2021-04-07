@@ -14,7 +14,7 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         public string Name() => "IGetUsersCommand";
 
-        public string Namespace() => "projectnamespacecore";
+        public string Namespace() => "project.namespace.core";
 
         public IEnumerable<string> Usings() => new List<string>(){ "System" };
     }

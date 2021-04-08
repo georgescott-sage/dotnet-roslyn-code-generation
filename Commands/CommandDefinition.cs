@@ -10,10 +10,7 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         public string Namespace() => "SBC.Connected.Service.Service.Domain.Logic.UseCases.UpdateUser.Commands";
 
-        public string Summary()
-        {
-            throw new NotImplementedException();
-        }
+        public string Summary() => "Command to update a user";
 
         //TODO: properties
         //TODO: constructor params

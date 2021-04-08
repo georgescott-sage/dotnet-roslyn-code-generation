@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using dotnet_roslyn_code_generation.commands;
 using dotnet_roslyn_code_generation.commands.definitions;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +22,11 @@ namespace dotnet_roslyn_code_generation
             Console.WriteLine("generatedCommandInterface:");
             Console.WriteLine(generatedCommandInterface);
 
-            Console.WriteLine(command);
+            // Create a command
+            var generatedCommand = commandCreator.CreateClass(new CommandDefinition());
+            Console.WriteLine("generatedCommand:");
+            Console.WriteLine(generatedCommand);
+
 
             // Wait to exit.
             Console.Read();

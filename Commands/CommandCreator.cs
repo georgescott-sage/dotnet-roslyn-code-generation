@@ -17,7 +17,7 @@ namespace dotnet_roslyn_code_generation.commands
         {
             return new CommandInterfaceBuilder()
                 .WithNamespace(interfaceDefinition.Namespace())
-                .WithUsings(interfaceDefinition.Usings())
+                .WithReferences(interfaceDefinition.Usings())
                 .WithInterface(interfaceDefinition.Name(), interfaceDefinition.BaseType(), interfaceDefinition.MethodDeclarations(), interfaceDefinition.Summary())
                 .Build();
         }

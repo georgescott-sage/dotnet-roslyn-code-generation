@@ -30,7 +30,7 @@ namespace dotnet_roslyn_code_generation.commands
             return this;
         }
 
-        public CommandInterfaceBuilder WithInterface(string name, string baseType, Tuple<string, Type>[] methodDeclarations, string summaryComment)
+        public CommandInterfaceBuilder WithInterface(string name, string baseType, Tuple<string, string>[] methodDeclarations, string summaryComment)
         {
             var definition = SyntaxFactory.InterfaceDeclaration(name)
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
@@ -39,7 +39,7 @@ namespace dotnet_roslyn_code_generation.commands
 
             foreach(var method in methodDeclarations)
             {
-                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Item2.Name), method.Item1)
+                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Item2), method.Item1)
                     .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 

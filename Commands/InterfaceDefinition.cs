@@ -14,6 +14,6 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         string BaseType();
 
-        Tuple<string, Type>[] MethodDeclarations();
+        Tuple<string, string>[] MethodDeclarations();
     }
 }

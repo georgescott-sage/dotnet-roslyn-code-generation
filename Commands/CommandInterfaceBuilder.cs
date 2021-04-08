@@ -20,10 +20,10 @@ namespace dotnet_roslyn_code_generation.commands
             return this;
         }
 
-        public CommandInterfaceBuilder WithUsings(IEnumerable<string> usings)
+        public CommandInterfaceBuilder WithReferences(IEnumerable<string> references)
         {
             namespaceDeclaration = namespaceDeclaration.AddUsings(
-                usings.Select(
+                references.Select(
                     x => SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(x))
                     ).ToArray()
                 );
@@ -35,7 +35,7 @@ namespace dotnet_roslyn_code_generation.commands
             var definition = SyntaxFactory.InterfaceDeclaration(name)
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                 .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(baseType)))
-                .WithLeadingTrivia(new SyntaxTriviaList(new SyntaxTriviaList(SyntaxFactory.Comment("/// <summary>"), SyntaxFactory.Comment($"// {summaryComment}"), SyntaxFactory.Comment("/// </summary>"))));
+                .WithLeadingTrivia(new SyntaxTriviaList(new SyntaxTriviaList(SyntaxFactory.Comment("/// <summary>"), SyntaxFactory.Comment($"/// {summaryComment}"), SyntaxFactory.Comment("/// </summary>"))));
 
             foreach(var method in methodDeclarations)
             {
@@ -50,6 +50,5 @@ namespace dotnet_roslyn_code_generation.commands
 
             return this;
         }
-
     }
 }

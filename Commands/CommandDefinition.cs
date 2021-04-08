@@ -2,23 +2,33 @@ using System;
 using System.Collections.Generic;
 namespace dotnet_roslyn_code_generation.commands.definitions
 {
-    public class CommandInterfaceDefinition : InterfaceDefinition
+    public class CommandDefinition : InterfaceDefinition
     {
-        public string BaseType() => "ICustomCommand<UpdateUserCommandRequest, UpdateUserCommandResponse>";
+        public string BaseType() => "IUpdateUserCommand";
 
-        public Tuple<string, Type>[] MethodDeclarations() => new Tuple<string, Type>[]{};
+        public string Name() => "UpdateBusinessHealthCommand";
 
-        public string Name() => "IUpdateUserCommand";
-        public string Summary() => "Interface defining the command to update a user";
-        public string Namespace() => "SBC.Connected.ServiceName.Service.Domain.Core.UseCases.UseCase.Commands.CommandName";
+        public string Namespace() => "SBC.Connected.Service.Service.Domain.Logic.UseCases.UpdateUser.Commands";
 
-        public IEnumerable<string> Usings() => new List<string>(){ "System", "SBC.Domain.Commands" };
-    }
+        public string Summary()
+        {
+            throw new NotImplementedException();
+        }
 
-        public string Name() => "IGetUsersCommand";
+        //TODO: properties
+        //TODO: constructor params
+        //TODO: method params
 
-        public string Namespace() => "project.namespace.core";
+        public IEnumerable<string> Usings() => new List<string>(){ "System", "SBC.Caching", "System.Data"  };
 
-        public IEnumerable<string> Usings() => new List<string>(){ "System" };
+        public Tuple<string, string>[] MethodDeclarations() 
+            => new Tuple<string, string>[]
+            {
+                Tuple.Create("TimeoutAfter", "TimeSpan"),
+                Tuple.Create("LockTTL", "TimeSpan"),
+                Tuple.Create("CacheDependencies", "List<ICacheDependency>"),
+                Tuple.Create("Owner", "string")
+                //public async Task<UpdateBusinessHealthCommandResponse> ExecuteAsync(IDbTransaction transaction, UpdateBusinessHealthCommandRequest request)
+            };
     }
 }

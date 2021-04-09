@@ -6,7 +6,7 @@ namespace dotnet_roslyn_code_generation.commands.definitions
     {
         public string BaseType() => "IUpdateUserCommand";
 
-        public string Name() => "UpdateBusinessHealthCommand";
+        public string Name() => "UpdateUserCommand";
 
         public string Namespace() => "SBC.Connected.Service.Service.Domain.Logic.UseCases.UpdateUser.Commands";
 

@@ -3,11 +3,10 @@ using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace dotnet_roslyn_code_generation.commands
+namespace dotnet_roslyn_code_generation.builders
 {
     public abstract class AbstractTypeBuilder
     {
-
         public abstract TypeDeclarationSyntax Build();
         
         protected TypeDeclarationSyntax typeDeclaration;

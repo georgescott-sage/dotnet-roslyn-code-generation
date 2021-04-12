@@ -1,8 +1,5 @@
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using System.Linq;
 using dotnet_roslyn_code_generation.commands.definitions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using dotnet_roslyn_code_generation.builders;
 
 namespace dotnet_roslyn_code_generation.commands
 {

@@ -2,7 +2,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace dotnet_roslyn_code_generation.commands
+namespace dotnet_roslyn_code_generation.builders
 {
     public class ClassBuilder : AbstractTypeBuilder
     {

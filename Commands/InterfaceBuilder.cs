@@ -20,7 +20,7 @@ namespace dotnet_roslyn_code_generation.commands
             return this;
         }
 
-        public InterfaceBuilder WithMethodDeclarations(string name, string baseType, Tuple<string, string>[] methodDeclarations, string summaryComment)
+        public InterfaceBuilder WithMethodDeclarations(Tuple<string, string>[] methodDeclarations)
         {
             foreach(var method in methodDeclarations)
             {

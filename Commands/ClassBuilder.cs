@@ -11,7 +11,7 @@ namespace dotnet_roslyn_code_generation.commands
 
         public ClassDeclarationSyntax Build() => classDeclaration;
 
-        public ClassBuilder WithClass(string name, string baseType, Tuple<string, string>[] methodDeclarations, string summaryComment)
+        public ClassBuilder WithClass(string name, string baseType, string summaryComment)
         {
             classDeclaration = SyntaxFactory.ClassDeclaration(name)
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
@@ -21,7 +21,7 @@ namespace dotnet_roslyn_code_generation.commands
             return this;
         }
 
-        public ClassBuilder WithMethods(string name, string baseType, Tuple<string, string>[] methodDeclarations, string summaryComment)
+        public ClassBuilder WithMethods(Tuple<string, string>[] methodDeclarations)
         {
             foreach(var method in methodDeclarations)
             {

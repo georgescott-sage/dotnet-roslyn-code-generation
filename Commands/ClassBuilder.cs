@@ -1,27 +1,23 @@
 using Microsoft.CodeAnalysis.CSharp;
 using System;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace dotnet_roslyn_code_generation.commands
 {
-    public class ClassBuilder
+    public class ClassBuilder : AbstractTypeBuilder
     {
-        private ClassDeclarationSyntax classDeclaration;
+        public override TypeDeclarationSyntax Build() => (ClassDeclarationSyntax) typeDeclaration;
 
-        public ClassDeclarationSyntax Build() => classDeclaration;
-
-        public ClassBuilder WithClass(string name, string baseType, string summaryComment)
+        public override AbstractTypeBuilder WithDefinition(string name, string baseType)
         {
-            classDeclaration = SyntaxFactory.ClassDeclaration(name)
+            typeDeclaration = SyntaxFactory.ClassDeclaration(name)
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(baseType)))
-                .WithLeadingTrivia(new SyntaxTriviaList(new SyntaxTriviaList(SyntaxFactory.Comment("/// <summary>"), SyntaxFactory.Comment($"/// {summaryComment}"), SyntaxFactory.Comment("/// </summary>"))));
+                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(baseType)));
 
             return this;
         }
 
-        public ClassBuilder WithMethods(Tuple<string, string>[] methodDeclarations)
+        public override AbstractTypeBuilder WithMethodDeclarations(Tuple<string, string>[] methodDeclarations)
         {
             foreach(var method in methodDeclarations)
             {
@@ -32,7 +28,7 @@ namespace dotnet_roslyn_code_generation.commands
                     .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                     .WithBody(SyntaxFactory.Block(notImplementedException));
 
-                classDeclaration = classDeclaration.AddMembers(methodDeclaration);;
+                typeDeclaration = typeDeclaration.AddMembers(methodDeclaration);
             }
             return this;
         }

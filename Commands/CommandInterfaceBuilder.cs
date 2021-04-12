@@ -30,16 +30,16 @@ namespace dotnet_roslyn_code_generation.commands
             return this;
         }
 
-        public CommandInterfaceBuilder WithClass(ClassDeclarationSyntax classDefinition)
+        public CommandInterfaceBuilder WithClass(TypeDeclarationSyntax classDefinition)
         {
-            namespaceDeclaration = namespaceDeclaration.AddMembers(classDefinition);
+            namespaceDeclaration = namespaceDeclaration.AddMembers((ClassDeclarationSyntax) classDefinition);
 
             return this;
         }
 
-        public CommandInterfaceBuilder WithInterface(InterfaceDeclarationSyntax interfaceDeclaration)
+        public CommandInterfaceBuilder WithInterface(TypeDeclarationSyntax interfaceDeclaration)
         {
-            namespaceDeclaration = namespaceDeclaration.AddMembers(interfaceDeclaration);
+            namespaceDeclaration = namespaceDeclaration.AddMembers((InterfaceDeclarationSyntax) interfaceDeclaration);
 
             return this;
         }

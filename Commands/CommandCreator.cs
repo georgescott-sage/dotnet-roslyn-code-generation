@@ -18,7 +18,8 @@ namespace dotnet_roslyn_code_generation.commands
         public string CreateInterface(InterfaceDefinition interfaceDefinition)
         {
             var interfaceResult = new InterfaceBuilder()
-                        .WithInterface(interfaceDefinition.Name(), interfaceDefinition.BaseType(), interfaceDefinition.MethodDeclarations(), interfaceDefinition.Summary())
+                        .WithDefinition(interfaceDefinition.Name(), interfaceDefinition.BaseType())
+                        .WithSummary(interfaceDefinition.Summary())
                         .WithMethodDeclarations(interfaceDefinition.MethodDeclarations())
                         .Build();
 
@@ -32,8 +33,9 @@ namespace dotnet_roslyn_code_generation.commands
         public string CreateClass(InterfaceDefinition interfaceDefinition)
         {
             var classDefinition = new ClassBuilder()
-                        .WithClass(interfaceDefinition.Name(), interfaceDefinition.BaseType(), interfaceDefinition.Summary())
-                        .WithMethods(interfaceDefinition.MethodDeclarations())
+                        .WithDefinition(interfaceDefinition.Name(), interfaceDefinition.BaseType())
+                        .WithSummary(interfaceDefinition.Summary())
+                        .WithMethodDeclarations(interfaceDefinition.MethodDeclarations())
                         .Build();
 
             return new CommandInterfaceBuilder()

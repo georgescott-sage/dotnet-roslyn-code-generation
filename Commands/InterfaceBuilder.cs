@@ -1,26 +1,23 @@
 using Microsoft.CodeAnalysis.CSharp;
 using System;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace dotnet_roslyn_code_generation.commands
 {
-    public class InterfaceBuilder
+
+    public class InterfaceBuilder : AbstractTypeBuilder
     {
-        private InterfaceDeclarationSyntax interfaceDeclaration;
-
-        public InterfaceDeclarationSyntax Build() => interfaceDeclaration;
-
-        public InterfaceBuilder WithInterface(string name, string baseType, Tuple<string, string>[] methodDeclarations, string summaryComment)
+        public override TypeDeclarationSyntax Build() => (InterfaceDeclarationSyntax) typeDeclaration;
+        
+        public override AbstractTypeBuilder WithDefinition(string name, string baseType)
         {
-            interfaceDeclaration = SyntaxFactory.InterfaceDeclaration(name)
+            typeDeclaration = SyntaxFactory.InterfaceDeclaration(name)
                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(baseType)))
-                .WithLeadingTrivia(new SyntaxTriviaList(new SyntaxTriviaList(SyntaxFactory.Comment("/// <summary>"), SyntaxFactory.Comment($"/// {summaryComment}"), SyntaxFactory.Comment("/// </summary>"))));
+                .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName(baseType)));
             return this;
         }
 
-        public InterfaceBuilder WithMethodDeclarations(Tuple<string, string>[] methodDeclarations)
+        public override AbstractTypeBuilder WithMethodDeclarations(Tuple<string, string>[] methodDeclarations)
         {
             foreach(var method in methodDeclarations)
             {
@@ -28,7 +25,7 @@ namespace dotnet_roslyn_code_generation.commands
                     .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 
-                interfaceDeclaration = interfaceDeclaration.AddMembers(methodDeclaration);
+                typeDeclaration = typeDeclaration.AddMembers(methodDeclaration);
             }
             return this;
         }

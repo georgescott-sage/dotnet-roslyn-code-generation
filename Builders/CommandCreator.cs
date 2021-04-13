@@ -1,7 +1,7 @@
 using dotnet_roslyn_code_generation.commands.definitions;
 using dotnet_roslyn_code_generation.builders;
 
-namespace dotnet_roslyn_code_generation.commands
+namespace dotnet_roslyn_code_generation.builders
 {
     public interface ICommandCreator
     {

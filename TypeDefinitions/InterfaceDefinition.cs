@@ -4,7 +4,7 @@ using dotnet_roslyn_code_generation.builders;
 
 namespace dotnet_roslyn_code_generation.commands.definitions
 {
-    public interface InterfaceDefinition
+    public interface ITypeDefinition
     {
         string Namespace();
 

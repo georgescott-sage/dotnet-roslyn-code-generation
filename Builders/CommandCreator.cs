@@ -5,14 +5,14 @@ namespace dotnet_roslyn_code_generation.builders
 {
     public interface ICommandCreator
     {
-        string CreateInterface(InterfaceDefinition interfaceDefinition);
-        string CreateClass(InterfaceDefinition interfaceDefinition);
+        string CreateInterface(ITypeDefinition interfaceDefinition);
+        string CreateClass(ITypeDefinition interfaceDefinition);
 
     }
 
     public class CommandCreator : ICommandCreator
     {
-        public string CreateInterface(InterfaceDefinition interfaceDefinition)
+        public string CreateInterface(ITypeDefinition interfaceDefinition)
         {
             var interfaceResult = new InterfaceBuilder()
                         .WithDefinition(interfaceDefinition.Name(), interfaceDefinition.BaseType())
@@ -27,7 +27,7 @@ namespace dotnet_roslyn_code_generation.builders
                 .Build();
         }
 
-        public string CreateClass(InterfaceDefinition interfaceDefinition)
+        public string CreateClass(ITypeDefinition interfaceDefinition)
         {
             var classDefinition = new ClassBuilder()
                         .WithDefinition(interfaceDefinition.Name(), interfaceDefinition.BaseType())

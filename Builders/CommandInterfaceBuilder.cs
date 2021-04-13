@@ -41,7 +41,5 @@ namespace dotnet_roslyn_code_generation.builders
             namespaceDeclaration = namespaceDeclaration.AddMembers((InterfaceDeclarationSyntax) interfaceDeclaration);
             return this;
         }
-
-
     }
 }

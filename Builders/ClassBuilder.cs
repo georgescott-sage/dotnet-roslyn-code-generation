@@ -26,19 +26,31 @@ namespace dotnet_roslyn_code_generation.builders
                 var creation = SyntaxFactory.ObjectCreationExpression(SyntaxFactory.ParseTypeName(typeof(NotImplementedException).Name)).WithArgumentList(SyntaxFactory.ArgumentList());
                 StatementSyntax notImplementedException = SyntaxFactory.ThrowStatement((ExpressionSyntax)creation);
                 
-                var methodParameters = method.Parameters == null ? new ParameterSyntax[0] : 
-                    method.Parameters.Select(x => 
-                        SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Item1))
-                            .WithType(SyntaxFactory.ParseTypeName(x.Item2))
-                    ).ToArray();
-                
                 var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Type), method.Name)
-                    .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                    .AddParameterListParameters(methodParameters)
+                    .AddModifiers(GetModifiers(method.Modifiers))
+                    .AddParameterListParameters(GetMethodParameters(method.Parameters))
                     .WithBody(SyntaxFactory.Block(notImplementedException));
+
                 typeDeclaration = typeDeclaration.AddMembers(methodDeclaration);
             }
             return this;
+        }
+
+        private SyntaxToken[] GetModifiers(string[] modifiers)
+        {
+            return modifiers == null ? new SyntaxToken[0] : 
+                modifiers.Select(x => 
+                    SyntaxFactory.ParseToken(x)
+                ).ToArray();
+        }
+
+        private ParameterSyntax[] GetMethodParameters(Tuple<string, string>[] parameters)
+        {
+            return parameters == null ? new ParameterSyntax[0] : 
+                parameters.Select(x => 
+                    SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Item1))
+                        .WithType(SyntaxFactory.ParseTypeName(x.Item2))
+                ).ToArray();
         }
     }
 }

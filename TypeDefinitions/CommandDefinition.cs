@@ -47,7 +47,7 @@ namespace dotnet_roslyn_code_generation.commands.definitions
                 {
                     Name = "ExecuteAsync", 
                     Type = "Task<UpdateBusinessHealthCommandResponse>",
-                    //async?
+                    Modifiers = new string[] { "public", "async" },
                     Parameters = new Tuple<string, string>[] 
                     {
                         Tuple.Create<string, string>("transaction", "IDbTransaction"),

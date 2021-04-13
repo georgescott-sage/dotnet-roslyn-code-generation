@@ -17,11 +17,11 @@ namespace dotnet_roslyn_code_generation.builders
             return this;
         }
 
-        public override AbstractTypeBuilder WithMethodDeclarations(Tuple<string, string>[] methodDeclarations)
+        public override AbstractTypeBuilder WithMethodDeclarations(MethodDeclaration[] methods)
         {
-            foreach(var method in methodDeclarations)
+            foreach(var method in methods)
             {
-                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Item2), method.Item1)
+                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Type), method.Name)
                     .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 

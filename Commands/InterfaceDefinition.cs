@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using dotnet_roslyn_code_generation.builders;
+
 namespace dotnet_roslyn_code_generation.commands.definitions
 {
     public interface InterfaceDefinition
@@ -14,6 +16,6 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         string BaseType();
 
-        Tuple<string, string>[] MethodDeclarations();
+        MethodDeclaration[] MethodDeclarations();
     }
 }

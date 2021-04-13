@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using dotnet_roslyn_code_generation.builders;
+
 namespace dotnet_roslyn_code_generation.commands.definitions
 {
     public class CommandInterfaceDefinition : InterfaceDefinition
     {
         public string BaseType() => "ICustomCommand<UpdateUserCommandRequest, UpdateUserCommandResponse>";
 
-        public Tuple<string, string>[] MethodDeclarations() => new Tuple<string, string>[]{};
+        public MethodDeclaration[] MethodDeclarations() => new MethodDeclaration[]{};
 
         public string Name() => "IUpdateUserCommand";
         public string Summary() => "Interface defining the command to update a user";

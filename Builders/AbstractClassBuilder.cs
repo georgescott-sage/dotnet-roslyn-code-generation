@@ -13,7 +13,7 @@ namespace dotnet_roslyn_code_generation.builders
 
         public abstract AbstractTypeBuilder WithDefinition(string name, string baseType);
 
-        public abstract AbstractTypeBuilder WithMethodDeclarations(Tuple<string, string>[] methodDeclarations);
+        public abstract AbstractTypeBuilder WithMethodDeclarations(MethodDeclaration[] methodDeclarations);
 
         public AbstractTypeBuilder WithSummary(string summaryComment)
         {

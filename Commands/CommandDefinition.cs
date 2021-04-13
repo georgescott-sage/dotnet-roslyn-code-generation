@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using dotnet_roslyn_code_generation.builders;
+
 namespace dotnet_roslyn_code_generation.commands.definitions
 {
     public class CommandDefinition : InterfaceDefinition
@@ -18,14 +20,40 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         public IEnumerable<string> Usings() => new List<string>(){ "System", "SBC.Caching", "System.Data"  };
 
-        public Tuple<string, string>[] MethodDeclarations() 
-            => new Tuple<string, string>[]
+        public MethodDeclaration[] MethodDeclarations() 
+            => new MethodDeclaration[]
             {
-                Tuple.Create("TimeoutAfter", "TimeSpan"),
-                Tuple.Create("LockTTL", "TimeSpan"),
-                Tuple.Create("CacheDependencies", "List<ICacheDependency>"),
-                Tuple.Create("Owner", "string")
-                //public async Task<UpdateBusinessHealthCommandResponse> ExecuteAsync(IDbTransaction transaction, UpdateBusinessHealthCommandRequest request)
+                new MethodDeclaration()
+                {
+                    Name = "TimeoutAfter", 
+                    Type = "TimeSpan"
+                },
+                new MethodDeclaration()
+                {
+                    Name = "LockTTL", 
+                    Type = "TimeSpan"
+                },
+                new MethodDeclaration()
+                {
+                    Name = "CacheDependencies", 
+                    Type = "List<ICacheDependency>"
+                },
+                new MethodDeclaration()
+                {
+                    Name = "Owner", 
+                    Type = "string"
+                },
+                new MethodDeclaration()
+                {
+                    Name = "ExecuteAsync", 
+                    Type = "Task<UpdateBusinessHealthCommandResponse>",
+                    //async?
+                    Parameters = new Tuple<string, string>[] 
+                    {
+                        Tuple.Create<string, string>("transaction", "IDbTransaction"),
+                        Tuple.Create<string, string>("request", "UpdateBusinessHealthCommandRequest")
+                    }
+                }
             };
     }
 }

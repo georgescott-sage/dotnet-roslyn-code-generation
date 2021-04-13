@@ -33,14 +33,12 @@ namespace dotnet_roslyn_code_generation.commands
         public CommandInterfaceBuilder WithClass(TypeDeclarationSyntax classDefinition)
         {
             namespaceDeclaration = namespaceDeclaration.AddMembers((ClassDeclarationSyntax) classDefinition);
-
             return this;
         }
 
         public CommandInterfaceBuilder WithInterface(TypeDeclarationSyntax interfaceDeclaration)
         {
             namespaceDeclaration = namespaceDeclaration.AddMembers((InterfaceDeclarationSyntax) interfaceDeclaration);
-
             return this;
         }
 

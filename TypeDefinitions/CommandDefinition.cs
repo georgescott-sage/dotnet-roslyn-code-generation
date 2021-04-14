@@ -16,7 +16,6 @@ namespace dotnet_roslyn_code_generation.commands.definitions
 
         //TODO: properties
         //TODO: constructor params
-        //TODO: method params
 
         public IEnumerable<string> Usings() => new List<string>(){ "System", "SBC.Caching", "System.Data"  };
 

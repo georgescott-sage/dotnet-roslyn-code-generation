@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using dotnet_roslyn_code_generation.builders;
 using dotnet_roslyn_code_generation.commands;
 using dotnet_roslyn_code_generation.commands.definitions;
+using dotnet_roslyn_code_generation.SampleEndpointDocs;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace dotnet_roslyn_code_generation
@@ -17,6 +19,24 @@ namespace dotnet_roslyn_code_generation
                 .BuildServiceProvider();
 
             var commandCreator = serviceProvider.GetService<ICommandCreator>();
+
+            var endpoint = new EndpointDetail()
+            {
+                Description = "Retrieve a role.",
+                HttpAction = "Get",
+                Path = "/v1/roles/{RoleId}",
+                PathParameters = new List<PathParameter>()
+                {
+                    new PathParameter()
+                    {
+                        Name = "RoleId",
+                        Type = "string",
+                        Format = "uuid",
+                        Required = true,
+                        Description = "Unique ID of the role."
+                    }
+                }
+            };
 
             // Create a command interface
             var generatedCommandInterface = commandCreator.CreateInterface(new CommandInterfaceDefinition());

@@ -1,7 +1,6 @@
 using Microsoft.CodeAnalysis.CSharp;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Linq;
 
 namespace dotnet_roslyn_code_generation.builders
 {
@@ -21,16 +20,10 @@ namespace dotnet_roslyn_code_generation.builders
         public override AbstractTypeBuilder WithMethodDeclarations(MethodDeclaration[] methods)
         {
             foreach(var method in methods)
-            {
-                var methodParameters = method.Parameters == null ? new ParameterSyntax[0] : 
-                    method.Parameters.Select(x => 
-                        SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Item1))
-                            .WithType(SyntaxFactory.ParseTypeName(x.Item2))
-                    ).ToArray();
-                    
+            {                    
                 var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Type), method.Name)
-                    .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                    .AddParameterListParameters(methodParameters)
+                    .AddModifiers(GetModifiers(method.Modifiers))
+                    .AddParameterListParameters(GetMethodParameters(method.Parameters))
                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 
                 typeDeclaration = typeDeclaration.AddMembers(methodDeclaration);

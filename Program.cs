@@ -12,8 +12,6 @@ namespace dotnet_roslyn_code_generation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
             var serviceProvider = new ServiceCollection()
                 .AddSingleton<ICommandCreator, CommandCreator>()
                 .BuildServiceProvider();

@@ -12,11 +12,9 @@ namespace dotnet_roslyn_code_generation.SampleEndpointDocs
         //how to parse? get from policy?
         public string Resource { get; internal set; }
         public string Operation => $"{HttpAction}{Resource}";
-
         public string CommandName => $"{Operation}Command";
-
         public string CommandRequest => $"{Operation}CommandRequest";
-
         public string CommandResponse => $"{Operation}CommandResponse";
+        public string QueryRequest => $"{Operation}QueryRequest";
     }
 }

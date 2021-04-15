@@ -39,6 +39,12 @@ namespace dotnet_roslyn_code_generation
                 }
             };
 
+             // Create a query interface
+            var generatedQueryInterface = commandCreator.CreateInterface(new QueryInterfaceDefinition(endpoint));
+            Console.WriteLine("generatedQueryInterface:");
+            Console.WriteLine(generatedQueryInterface);
+            Console.WriteLine();
+
             // Create a command interface
             var generatedCommandInterface = commandCreator.CreateInterface(new CommandInterfaceDefinition(endpoint));
             Console.WriteLine("generatedCommandInterface:");

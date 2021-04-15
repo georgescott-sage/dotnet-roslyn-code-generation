@@ -25,6 +25,7 @@ namespace dotnet_roslyn_code_generation
                 Description = "Retrieve a role.",
                 HttpAction = "Get",
                 Path = "/v1/roles/{RoleId}",
+                Resource = "Role",
                 PathParameters = new List<PathParameter>()
                 {
                     new PathParameter()
@@ -39,7 +40,7 @@ namespace dotnet_roslyn_code_generation
             };
 
             // Create a command interface
-            var generatedCommandInterface = commandCreator.CreateInterface(new CommandInterfaceDefinition());
+            var generatedCommandInterface = commandCreator.CreateInterface(new CommandInterfaceDefinition(endpoint));
             Console.WriteLine("generatedCommandInterface:");
             Console.WriteLine(generatedCommandInterface);
             Console.WriteLine();

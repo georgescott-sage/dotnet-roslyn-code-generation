@@ -3,7 +3,7 @@ using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
-using codegen.definitions.commands.definitions;
+using codegen.library.definitions;
 
 namespace codegen.library.builders
 {

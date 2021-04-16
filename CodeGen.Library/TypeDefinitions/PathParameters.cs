@@ -1,4 +1,4 @@
-namespace codegen.definitions.commands.definitions
+namespace codegen.library.definitions
 {
     public class PathParameter
     {

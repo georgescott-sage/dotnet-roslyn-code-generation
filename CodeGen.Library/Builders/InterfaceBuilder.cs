@@ -1,7 +1,7 @@
 using Microsoft.CodeAnalysis.CSharp;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using codegen.definitions.commands.definitions;
+using codegen.library.definitions;
 
 namespace codegen.library.builders
 {

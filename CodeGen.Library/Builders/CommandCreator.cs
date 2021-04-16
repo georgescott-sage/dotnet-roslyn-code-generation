@@ -1,4 +1,4 @@
-using codegen.definitions.commands.definitions;
+using codegen.library.definitions;
 
 namespace codegen.library.builders
 {

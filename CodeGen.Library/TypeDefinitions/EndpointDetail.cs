@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace codegen.definitions.commands.definitions
+namespace codegen.library.definitions
 {
     public class EndpointDetail
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using codegen.definitions.commands.definitions;
+using codegen.library.definitions;
 using codegen.library.builders;
 using Microsoft.Extensions.DependencyInjection;
 

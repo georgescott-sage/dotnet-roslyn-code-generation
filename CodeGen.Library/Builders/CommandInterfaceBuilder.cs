@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace dotnet_roslyn_code_generation.builders
+namespace codegen.library.builders
 {
 
     public class CommandInterfaceBuilder

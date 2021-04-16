@@ -1,4 +1,4 @@
-namespace dotnet_roslyn_code_generation.SampleEndpointDocs
+namespace codegen.definitions.commands.definitions
 {
     public class PathParameter
     {

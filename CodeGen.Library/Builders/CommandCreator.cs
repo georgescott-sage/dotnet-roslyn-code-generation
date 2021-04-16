@@ -1,7 +1,6 @@
-using dotnet_roslyn_code_generation.commands.definitions;
-using dotnet_roslyn_code_generation.builders;
+using codegen.definitions.commands.definitions;
 
-namespace dotnet_roslyn_code_generation.builders
+namespace codegen.library.builders
 {
     public interface ICommandCreator
     {

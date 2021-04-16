@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using dotnet_roslyn_code_generation.builders;
-using dotnet_roslyn_code_generation.SampleEndpointDocs;
 
-namespace dotnet_roslyn_code_generation.commands.definitions
+namespace codegen.definitions.commands.definitions
 {
     public class CommandInterfaceDefinition : ITypeDefinition
     {

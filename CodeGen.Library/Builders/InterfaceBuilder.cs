@@ -1,10 +1,10 @@
 using Microsoft.CodeAnalysis.CSharp;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using codegen.definitions.commands.definitions;
 
-namespace dotnet_roslyn_code_generation.builders
+namespace codegen.library.builders
 {
-
     public class InterfaceBuilder : AbstractTypeBuilder
     {
         public override TypeDeclarationSyntax Build() => (InterfaceDeclarationSyntax) typeDeclaration;

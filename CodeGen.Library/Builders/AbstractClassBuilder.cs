@@ -3,8 +3,9 @@ using System;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
+using codegen.definitions.commands.definitions;
 
-namespace dotnet_roslyn_code_generation.builders
+namespace codegen.library.builders
 {
     public abstract class AbstractTypeBuilder
     {

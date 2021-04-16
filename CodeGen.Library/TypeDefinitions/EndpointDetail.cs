@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace dotnet_roslyn_code_generation.SampleEndpointDocs
+namespace codegen.definitions.commands.definitions
 {
     public class EndpointDetail
     {
@@ -10,7 +10,7 @@ namespace dotnet_roslyn_code_generation.SampleEndpointDocs
         public IEnumerable<PathParameter> PathParameters { get; set; }
 
         //how to parse? get from policy?
-        public string Resource { get; internal set; }
+        public string Resource { get; set; }
         public string Operation => $"{HttpAction}{Resource}";
         public string CommandName => $"{Operation}Command";
         public string CommandRequest => $"{Operation}CommandRequest";

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using dotnet_roslyn_code_generation.builders;
-using dotnet_roslyn_code_generation.commands;
-using dotnet_roslyn_code_generation.commands.definitions;
-using dotnet_roslyn_code_generation.SampleEndpointDocs;
+using codegen.definitions.commands.definitions;
+using codegen.library.builders;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace dotnet_roslyn_code_generation
+namespace code_gen.console
 {
     class Program
     {

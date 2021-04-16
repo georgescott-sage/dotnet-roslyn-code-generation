@@ -1,6 +1,6 @@
 using System;
 
-namespace dotnet_roslyn_code_generation.builders
+namespace codegen.definitions.commands.definitions
 {
     public class MethodDeclaration
     {

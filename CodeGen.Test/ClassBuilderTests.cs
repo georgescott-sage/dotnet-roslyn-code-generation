@@ -45,8 +45,28 @@ namespace codegen.Test
                         .WithDefinition("test", "testBase")
                         .WithMethodDeclarations(new MethodDeclaration[] { method })
                         .Build();
-            Console.WriteLine(classResult);
             Assert.EndsWith($"{method.ReturnType}{method.Name}(){{thrownewNotImplementedException();}}}}", classResult.ToFullString());
+        }
+
+        [Fact]
+        public void WhenMethodIsProvided_ClassIsBuilt_MethodHasParameters()
+        {
+            var method = new MethodDeclaration()
+                {
+                    Name = "TimeoutAfter", 
+                    ReturnType = "TimeSpan",
+                    Parameters = new Tuple<string, string>[] {
+                        new Tuple<string, string>("testParam", "string")
+                    }
+                };
+
+            TypeDeclarationSyntax classResult = new ClassBuilder()
+                        .WithDefinition("test", "testBase")
+                        .WithMethodDeclarations(new MethodDeclaration[] { method })
+                        .Build();
+            Console.WriteLine(classResult);
+            var parameter = $"{method.Parameters[0].Item1}{method.Parameters[0].Item2}"; 
+            Assert.EndsWith($"{method.ReturnType}{method.Name}({parameter}){{thrownewNotImplementedException();}}}}", classResult.ToFullString());
         }
     }
 }

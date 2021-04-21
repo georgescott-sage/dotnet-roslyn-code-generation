@@ -33,22 +33,6 @@ namespace codegen.Test
         }
 
         [Fact]
-        public void WhenMethodIsProvided_ClassIsBuilt_MethodIsNotImplemented()
-        {
-            var method = new MethodDeclaration()
-                {
-                    Name = "TimeoutAfter", 
-                    ReturnType = "TimeSpan"
-                };
-
-            TypeDeclarationSyntax classResult = new ClassBuilder()
-                        .WithDefinition("test", "testBase")
-                        .WithMethodDeclarations(new MethodDeclaration[] { method })
-                        .Build();
-            Assert.EndsWith($"{method.ReturnType}{method.Name}(){{thrownewNotImplementedException();}}}}", classResult.ToFullString());
-        }
-
-        [Fact]
         public void WhenMethodIsProvided_ClassIsBuilt_MethodHasParameters()
         {
             var method = new MethodDeclaration()
@@ -67,6 +51,58 @@ namespace codegen.Test
             Console.WriteLine(classResult);
             var parameter = $"{method.Parameters[0].Item1}{method.Parameters[0].Item2}"; 
             Assert.EndsWith($"{method.ReturnType}{method.Name}({parameter}){{thrownewNotImplementedException();}}}}", classResult.ToFullString());
+        }
+
+        [Fact]
+        public void WhenMethodIsProvided_ClassIsBuilt_MethodBodyThrowsNotImplemented()
+        {
+            var method = new MethodDeclaration()
+                {
+                    Name = "TimeoutAfter", 
+                    ReturnType = "TimeSpan"
+                };
+
+            TypeDeclarationSyntax classResult = new ClassBuilder()
+                        .WithDefinition("test", "testBase")
+                        .WithMethodDeclarations(new MethodDeclaration[] { method })
+                        .Build();
+            Assert.EndsWith($"{method.ReturnType}{method.Name}(){{thrownewNotImplementedException();}}}}", classResult.ToFullString());
+        }
+
+        [Fact]
+        public void WhenMethodIsProvided_ClassIsBuilt_MethodBodyReturnsNull()
+        {
+            var method = new MethodDeclaration()
+                {
+                    Name = "TimeoutAfter", 
+                    ReturnType = "TimeSpan",
+                    //implement method builder return null
+                };
+
+            TypeDeclarationSyntax classResult = new ClassBuilder()
+                        .WithDefinition("test", "testBase")
+                        .WithMethodDeclarations(new MethodDeclaration[] { method })
+                        .Build();
+            Console.WriteLine(classResult);
+            Assert.EndsWith($"{method.ReturnType}{method.Name}(){{returnnull;}}}}", classResult.ToFullString());
+        }
+
+        [Fact]
+        public void WhenMethodIsProvided_ClassIsBuilt_MethodBodyUsesArrowFunction()
+        {
+            var method = new MethodDeclaration()
+                {
+                    Name = "TimeoutAfter", 
+                    ReturnType = "TimeSpan",
+                    //implement method builder return null
+                };
+
+            TypeDeclarationSyntax classResult = new ClassBuilder()
+                        .WithDefinition("test", "testBase")
+                        .WithMethodDeclarations(new MethodDeclaration[] { method })
+                        .Build();
+            Console.WriteLine(classResult);
+            Assert.EndsWith($"{method.ReturnType}{method.Name}()=>null;}}", classResult.ToFullString());
         }
     }
 }

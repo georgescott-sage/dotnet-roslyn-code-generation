@@ -24,27 +24,27 @@ namespace codegen.library.definitions
                 new MethodDeclaration()
                 {
                     Name = "TimeoutAfter", 
-                    Type = "TimeSpan"
+                    ReturnType = "TimeSpan"
                 },
                 new MethodDeclaration()
                 {
                     Name = "LockTTL", 
-                    Type = "TimeSpan"
+                    ReturnType = "TimeSpan"
                 },
                 new MethodDeclaration()
                 {
                     Name = "CacheDependencies", 
-                    Type = "List<ICacheDependency>"
+                    ReturnType = "List<ICacheDependency>"
                 },
                 new MethodDeclaration()
                 {
                     Name = "Owner", 
-                    Type = "string"
+                    ReturnType = "string"
                 },
                 new MethodDeclaration()
                 {
                     Name = "ExecuteAsync", 
-                    Type = "Task<UpdateBusinessHealthCommandResponse>",
+                    ReturnType = "Task<UpdateBusinessHealthCommandResponse>",
                     Modifiers = new string[] { "public", "async" },
                     Parameters = new Tuple<string, string>[] 
                     {

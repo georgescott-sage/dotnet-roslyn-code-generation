@@ -27,7 +27,7 @@ namespace codegen.library.builders
                         SyntaxFactory.ParseTypeName(typeof(NotImplementedException).Name))
                             .WithArgumentList(SyntaxFactory.ArgumentList()));
                 
-                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.Type), method.Name)
+                var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.ReturnType), method.Name)
                     .AddModifiers(GetModifiers(method.Modifiers))
                     .AddParameterListParameters(GetMethodParameters(method.Parameters))
                     .WithBody(SyntaxFactory.Block(notImplementedException));

@@ -38,7 +38,7 @@ namespace codegen.Test
             var method = new MethodDeclaration()
                 {
                     Name = "TimeoutAfter", 
-                    Type = "TimeSpan"
+                    ReturnType = "TimeSpan"
                 };
 
             TypeDeclarationSyntax interfaceResult = new InterfaceBuilder()
@@ -46,7 +46,7 @@ namespace codegen.Test
                         .WithMethodDeclarations(new MethodDeclaration[] { method })
                         .Build();
             Console.WriteLine(interfaceResult);
-            Assert.EndsWith($"{method.Type}{method.Name}();}}", interfaceResult.ToFullString());
+            Assert.EndsWith($"{method.ReturnType}{method.Name}();}}", interfaceResult.ToFullString());
         }
     }
 }

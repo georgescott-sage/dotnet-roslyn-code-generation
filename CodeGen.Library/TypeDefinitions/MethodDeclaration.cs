@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace codegen.library.definitions
 {
@@ -6,7 +7,7 @@ namespace codegen.library.definitions
     {
         public string Name { get; set; }
         public string ReturnType { get; set; }
-        public Tuple<string, string>[] Parameters { get; set;}
-        public string[] Modifiers { get; set; }
+        public List<Tuple<string, string>> Parameters { get; set;}
+        public List<string> Modifiers { get; set; }
     }
 }

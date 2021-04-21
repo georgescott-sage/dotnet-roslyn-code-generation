@@ -3,6 +3,7 @@ using Xunit;
 using codegen.library.builders;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using codegen.library.definitions;
+using System.Collections.Generic;
 
 namespace codegen.Test
 {
@@ -39,7 +40,7 @@ namespace codegen.Test
                 {
                     Name = "TimeoutAfter", 
                     ReturnType = "TimeSpan",
-                    Parameters = new Tuple<string, string>[] {
+                    Parameters = new List<Tuple<string, string>>() {
                         new Tuple<string, string>("testParam", "string")
                     }
                 };

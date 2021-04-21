@@ -28,8 +28,8 @@ namespace codegen.library.builders
                             .WithArgumentList(SyntaxFactory.ArgumentList()));
                 
                 var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.ReturnType), method.Name)
-                    .AddModifiers(GetModifiers(method.Modifiers))
-                    .AddParameterListParameters(GetMethodParameters(method.Parameters))
+                    .AddModifiers(GetModifiers(method.Modifiers.ToArray()))
+                    .AddParameterListParameters(GetMethodParameters(method.Parameters.ToArray()))
                     .WithBody(SyntaxFactory.Block(notImplementedException));
 
                 typeDeclaration = typeDeclaration.AddMembers(methodDeclaration);

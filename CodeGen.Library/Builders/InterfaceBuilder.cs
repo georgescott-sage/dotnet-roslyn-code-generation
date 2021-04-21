@@ -22,8 +22,8 @@ namespace codegen.library.builders
             foreach(var method in methods)
             {                    
                 var methodDeclaration = SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(method.ReturnType), method.Name)
-                    .AddModifiers(GetModifiers(method.Modifiers))
-                    .AddParameterListParameters(GetMethodParameters(method.Parameters))
+                    .AddModifiers(GetModifiers(method.Modifiers.ToArray()))
+                    .AddParameterListParameters(GetMethodParameters(method.Parameters.ToArray()))
                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 
                 typeDeclaration = typeDeclaration.AddMembers(methodDeclaration);

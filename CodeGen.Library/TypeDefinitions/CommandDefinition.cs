@@ -45,8 +45,8 @@ namespace codegen.library.definitions
                 {
                     Name = "ExecuteAsync", 
                     ReturnType = "Task<UpdateBusinessHealthCommandResponse>",
-                    Modifiers = new string[] { "public", "async" },
-                    Parameters = new Tuple<string, string>[] 
+                    Modifiers = new List<string> { "public", "async" },
+                    Parameters = new List<Tuple<string, string>>
                     {
                         Tuple.Create<string, string>("transaction", "IDbTransaction"),
                         Tuple.Create<string, string>("request", "UpdateBusinessHealthCommandRequest")

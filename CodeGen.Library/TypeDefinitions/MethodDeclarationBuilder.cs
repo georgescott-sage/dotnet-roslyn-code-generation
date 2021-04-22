@@ -6,9 +6,15 @@ namespace codegen.library.definitions
     {
         private MethodDeclaration method { get; set; }
 
-        public MethodDeclarationBuilder()
+        public MethodDeclarationBuilder(string name)
         {
-            this.method = new MethodDeclaration();
+            this.method = new MethodDeclaration()
+            {
+                Name = name,
+                ReturnType = "void",
+                Parameters = new System.Collections.Generic.List<Tuple<string, string>>(),
+                Modifiers = new System.Collections.Generic.List<string>()
+            };
         }
 
         public MethodDeclaration Build =>  this.method;

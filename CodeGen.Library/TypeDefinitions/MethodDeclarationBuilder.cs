@@ -17,7 +17,7 @@ namespace codegen.library.definitions
             };
         }
 
-        public MethodDeclaration Build =>  this.method;
+        public MethodDeclaration Build() =>  this.method;
         
         public MethodDeclarationBuilder WithName(string name)
         {

@@ -35,11 +35,9 @@ namespace codegen.Test
         [Fact]
         public void WhenMethodIsProvided_WhenInterfaceIsBuilt_MethodIsPresent()
         {
-            var method = new MethodDeclaration()
-                {
-                    Name = "TimeoutAfter", 
-                    ReturnType = "TimeSpan"
-                };
+            var method = new MethodDeclarationBuilder("TimeoutAfter")
+                .WithReturnType("TimeSpan")
+                .Build();
 
             TypeDeclarationSyntax interfaceResult = new InterfaceBuilder()
                         .WithDefinition("test", "testBase")

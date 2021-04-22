@@ -36,14 +36,11 @@ namespace codegen.Test
         [Fact]
         public void WhenMethodIsProvided_ClassIsBuilt_MethodHasParameters()
         {
-            var method = new MethodDeclaration()
-                {
-                    Name = "TimeoutAfter", 
-                    ReturnType = "TimeSpan",
-                    Parameters = new List<Tuple<string, string>>() {
-                        new Tuple<string, string>("testParam", "string")
-                    }
-                };
+            var method = new MethodDeclarationBuilder("TimeoutAfter")
+                .WithReturnType("TimeSpan")
+                .WithParameter(new Tuple<string, string>("testParam", "string"))
+                .Build();
+                    //implement method builder return null
 
             TypeDeclarationSyntax classResult = new ClassBuilder()
                         .WithDefinition("test", "testBase")
@@ -57,11 +54,10 @@ namespace codegen.Test
         [Fact]
         public void WhenMethodIsProvided_ClassIsBuilt_MethodBodyThrowsNotImplemented()
         {
-            var method = new MethodDeclaration()
-                {
-                    Name = "TimeoutAfter", 
-                    ReturnType = "TimeSpan"
-                };
+            var method = new MethodDeclarationBuilder("TimeoutAfter")
+                .WithReturnType("TimeSpan")
+                .Build();
+                    //implement method builder return null
 
             TypeDeclarationSyntax classResult = new ClassBuilder()
                         .WithDefinition("test", "testBase")
@@ -73,12 +69,10 @@ namespace codegen.Test
         [Fact]
         public void WhenMethodIsProvided_ClassIsBuilt_MethodBodyReturnsNull()
         {
-            var method = new MethodDeclaration()
-                {
-                    Name = "TimeoutAfter", 
-                    ReturnType = "TimeSpan",
+            var method = new MethodDeclarationBuilder("TimeoutAfter")
+                .WithReturnType("TimeSpan")
+                .Build();
                     //implement method builder return null
-                };
 
             TypeDeclarationSyntax classResult = new ClassBuilder()
                         .WithDefinition("test", "testBase")
@@ -91,12 +85,10 @@ namespace codegen.Test
         [Fact]
         public void WhenMethodIsProvided_ClassIsBuilt_MethodBodyUsesArrowFunction()
         {
-            var method = new MethodDeclaration()
-                {
-                    Name = "TimeoutAfter", 
-                    ReturnType = "TimeSpan",
+            var method = new MethodDeclarationBuilder("TimeoutAfter")
+                .WithReturnType("TimeSpan")
+                .Build();
                     //implement method builder return null
-                };
 
             TypeDeclarationSyntax classResult = new ClassBuilder()
                         .WithDefinition("test", "testBase")

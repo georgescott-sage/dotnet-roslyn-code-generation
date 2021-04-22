@@ -21,37 +21,25 @@ namespace codegen.library.definitions
         public MethodDeclaration[] MethodDeclarations() 
             => new MethodDeclaration[]
             {
-                new MethodDeclaration()
-                {
-                    Name = "TimeoutAfter", 
-                    ReturnType = "TimeSpan"
-                },
-                new MethodDeclaration()
-                {
-                    Name = "LockTTL", 
-                    ReturnType = "TimeSpan"
-                },
-                new MethodDeclaration()
-                {
-                    Name = "CacheDependencies", 
-                    ReturnType = "List<ICacheDependency>"
-                },
-                new MethodDeclaration()
-                {
-                    Name = "Owner", 
-                    ReturnType = "string"
-                },
-                new MethodDeclaration()
-                {
-                    Name = "ExecuteAsync", 
-                    ReturnType = "Task<UpdateBusinessHealthCommandResponse>",
-                    Modifiers = new List<string> { "public", "async" },
-                    Parameters = new List<Tuple<string, string>>
-                    {
-                        Tuple.Create<string, string>("transaction", "IDbTransaction"),
-                        Tuple.Create<string, string>("request", "UpdateBusinessHealthCommandRequest")
-                    }
-                }
+                new MethodDeclarationBuilder("TimeoutAfter")
+                    .WithReturnType("TimeSpan")
+                    .Build(),
+                new MethodDeclarationBuilder("LockTTL")
+                    .WithReturnType("Timespan")
+                    .Build(),
+                new MethodDeclarationBuilder("CacheDependencies")
+                    .WithReturnType("List<ICacheDependency>")
+                    .Build(),
+                new MethodDeclarationBuilder("Owner")
+                    .WithReturnType("string")
+                    .Build(),
+                new MethodDeclarationBuilder("ExecuteAsync")
+                    .WithReturnType("Task<UpdateBusinessHealthCommandResponse>")
+                    .WithModifier("public")
+                    .WithModifier("async")
+                    .WithParameter(Tuple.Create<string, string>("transaction", "IDbTransaction"))
+                    .WithParameter(Tuple.Create<string, string>("request", "UpdateBusinessHealthCommandRequest"))
+                    .Build()
             };
     }
 }

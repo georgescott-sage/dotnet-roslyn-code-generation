@@ -37,8 +37,8 @@ namespace codegen.library.definitions
                     .WithReturnType("Task<UpdateBusinessHealthCommandResponse>")
                     .WithModifier("public")
                     .WithModifier("async")
-                    .WithParameter(Tuple.Create<string, string>("transaction", "IDbTransaction"))
-                    .WithParameter(Tuple.Create<string, string>("request", "UpdateBusinessHealthCommandRequest"))
+                    .WithParameter(new Parameter("transaction", "IDbTransaction"))
+                    .WithParameter(new Parameter("request", "UpdateBusinessHealthCommandRequest"))
                     .Build()
             };
     }

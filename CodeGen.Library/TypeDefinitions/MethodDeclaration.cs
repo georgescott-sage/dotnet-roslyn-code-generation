@@ -7,7 +7,7 @@ namespace codegen.library.definitions
     {
         public string Name { get; set; }
         public string ReturnType { get; set; }
-        public List<Tuple<string, string>> Parameters { get; set;}
+        public List<Parameter> Parameters { get; set; }
         public List<string> Modifiers { get; set; }
     }
 }

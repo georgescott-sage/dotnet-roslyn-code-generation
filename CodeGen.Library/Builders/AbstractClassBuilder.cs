@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 using codegen.library.definitions;
+using System.Collections.Generic;
 
 namespace codegen.library.builders
 {
@@ -33,12 +34,12 @@ namespace codegen.library.builders
                 ).ToArray();
         }
 
-        public ParameterSyntax[] GetMethodParameters(Tuple<string, string>[] parameters)
+        public ParameterSyntax[] GetMethodParameters(IEnumerable<Parameter> parameters)
         {
             return parameters == null ? new ParameterSyntax[0] : 
                 parameters.Select(x => 
-                    SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Item1))
-                        .WithType(SyntaxFactory.ParseTypeName(x.Item2))
+                    SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                        .WithType(SyntaxFactory.ParseTypeName(x.Type))
                 ).ToArray();
         }
     }

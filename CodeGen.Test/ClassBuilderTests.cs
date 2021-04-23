@@ -3,7 +3,6 @@ using Xunit;
 using codegen.library.builders;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using codegen.library.definitions;
-using System.Collections.Generic;
 
 namespace codegen.Test
 {
@@ -38,7 +37,7 @@ namespace codegen.Test
         {
             var method = new MethodDeclarationBuilder("TimeoutAfter")
                 .WithReturnType("TimeSpan")
-                .WithParameter(new Tuple<string, string>("testParam", "string"))
+                .WithParameter(new Parameter("testParam", "string"))
                 .Build();
                     //implement method builder return null
 
@@ -47,7 +46,7 @@ namespace codegen.Test
                         .WithMethodDeclarations(new MethodDeclaration[] { method })
                         .Build();
             Console.WriteLine(classResult);
-            var parameter = $"{method.Parameters[0].Item1}{method.Parameters[0].Item2}"; 
+            var parameter = $"{method.Parameters[0].Type}{method.Parameters[0].Name}"; 
             Assert.EndsWith($"{method.ReturnType}{method.Name}({parameter}){{thrownewNotImplementedException();}}}}", classResult.ToFullString());
         }
 

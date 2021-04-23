@@ -12,7 +12,7 @@ namespace codegen.library.definitions
             {
                 Name = name,
                 ReturnType = "void",
-                Parameters = new System.Collections.Generic.List<Tuple<string, string>>(),
+                Parameters = new System.Collections.Generic.List<Parameter>(),
                 Modifiers = new System.Collections.Generic.List<string>()
             };
         }
@@ -31,7 +31,7 @@ namespace codegen.library.definitions
             return this;
         }
 
-        public MethodDeclarationBuilder WithParameter(Tuple<string, string> parameter)
+        public MethodDeclarationBuilder WithParameter(Parameter parameter)
         {
             method.Parameters.Add(parameter);
             return this;
